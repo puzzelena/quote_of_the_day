@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import Quote from '../src/components/Quote'
 
-const Quote = ({ title, quote, numVotes }) => (
-  <>
-    <h1>{title}</h1>
-    <div>{quote}</div>
-    <div>Has {numVotes} votes</div>
-  </>
-);
-
-const App = ({ quotes }) => {
-  const [selected, setSelected] = useState(0);
-  const [votes, setVotes] = useState({
+const App = ({ quotes }) => { // App takes as props 'quotes'
+  const [selected, setSelected] = useState(0); // initial state for selected is 0
+  const [votes, setVotes] = useState({ // 6 quotes and initial state for each quote is 0
     0: 0,
     1: 0,
     2: 0,
@@ -20,9 +13,9 @@ const App = ({ quotes }) => {
     5: 0,
   });
 
-  const mostVoted = Object.keys(votes).sort((a, b) => votes[b] - votes[a])[0];
+  const mostVoted = Object.keys(votes).sort((a, b) => votes[b] - votes[a])[0]; // we get the keys 0, 1, 2, 3, 4, 5 then it sorts them in reverse order (5, 4, 3, 2, 1, 0),  finally it gets the first key in the sorting sequence => 5
 
-  const getRandomIndex = () => Math.floor(Math.random() * quotes.length);
+  const getRandomIndex = () => Math.floor(Math.random() * quotes.length); // it will generate index from 0 to 5
 
   const handleNextQuote = () => {
     let idx = getRandomIndex();
